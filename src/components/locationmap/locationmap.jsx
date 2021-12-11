@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import {
   EnvironmentFilled
 } from '@ant-design/icons';
+
 // import { Modal } from 'antd'
 
 class SimpleMap extends Component {
