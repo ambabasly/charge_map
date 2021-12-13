@@ -1,70 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Charge Map App
 
-## Available Scripts
+## User Story
+As a User I want to see all charging stations filtered by type in a specific radius on a map, to see how many of them in my area have a connector type that fits  my electric car requirements.
 
-In the project directory, you can run:
+## Acceptance Criteria
+- Radius is editable
+- Initial radius is 10km
+- Charging stations can be filtered by the connector types Type 2, CHAdeMO and CCS
+- Initially all three connector type filters are activated
+- Other connector types must be ignored
+- A map centered with the user's current location is shown
+- Charging stations are shown as markers
+  - Available charging stations will be shown green
+  - Not available charging Stations will be shown red
+- On clicking at a charging  station,  the following info will be displayed:
+  - Street
+  - Zip
+  - Town
+  - Country
+  - Latitude
+  - Longitude
+  - Operator
+  - Distance (calculated from user's current location to the geo point of the charging station)
+  - Status as Available or Occupied
+  - Connectors
+    - Number
+    - Plug Type
+    - Max Power
+    - Pricing Info
+- The map updates every
+  - Radius change
+  - Connector type chnage
+  - Center change
+- App should be provided as git repository or zip
+## Nice to have
+- Implement Marker clustering
+- Create a Docker container that runs the application
+- Unit /e2e Tests
 
-### `npm start`
+## API
+[https://api.openchargemap.io/v3/poi](https://api.openchargemap.io/v3/poi)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Docs: [https://openchargemap.io/site/develop/api](https://openchargemap.io/site/develop/api)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Connector Type Ids:
+- Type 2: 25
+- CHAdeMO: 2
+- CCS: 33
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Wireframe
+![Wireframe](./base.png)
