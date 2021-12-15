@@ -9,7 +9,7 @@ const Homepage = () => {
   // request details
   const request = useMemo(() => {
     return {
-      key: '{process.env.REACT_APP_API_KEY}',
+      key: 'dbd3949c-d7ea-41aa-81d1-e5d6489e1b',
       countrycode: 'DE'
     }
   }, [])
