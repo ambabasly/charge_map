@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import GoogleMapReact from 'google-map-react';
-import {
-  EnvironmentFilled
-} from '@ant-design/icons';
-import { Modal, Row, Col } from 'antd'
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import { EnvironmentFilled } from "@ant-design/icons";
+import { Modal, Row, Col } from "antd";
 
-class SimpleMap extends Component {
+export class SimpleMap extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       visible: false,
-      current: null
-    }
+      current: null,
+    };
   }
 
   // default props
   static defaultProps = {
-    zoom: 10
+    zoom: 10,
   };
 
   // charge center maker
@@ -24,7 +22,7 @@ class SimpleMap extends Component {
     return (
       <div
         onClick={() => {
-          this.open(location)
+          this.open(location);
         }}
         lat={location.AddressInfo.Latitude}
         lng={location.AddressInfo.Longitude}
@@ -32,26 +30,26 @@ class SimpleMap extends Component {
       >
         <EnvironmentFilled
           style={{
-            fontSize: '40px'
+            fontSize: "40px",
           }}
         />
       </div>
-    )
-  }
+    );
+  };
 
   open = (location) => {
     this.setState({
       current: location,
-      visible: true
-    })
-  }
+      visible: true,
+    });
+  };
 
   close = () => {
     this.setState({
       current: null,
-      visible: false
-    })
-  }
+      visible: false,
+    });
+  };
 
   // _onChildClick = (key, childProps) => {
   //   this.setState({
@@ -60,38 +58,31 @@ class SimpleMap extends Component {
   //   })
   // }
 
-
   render() {
-    const { locations } = this.props
-    const { visible, current } = this.state
+    const { locations } = this.props;
+    const { visible, current } = this.state;
 
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100%', width: '100%' }}>
+      <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
           defaultCenter={{
             lat: this.props.lat,
-            lng: this.props.long
+            lng: this.props.long,
           }}
           defaultZoom={this.props.zoom}
-        // onChildClick={this._onChildClick}
+          // onChildClick={this._onChildClick}
         >
           {/* <Home
             lat={this.props.lat}
             lng={this.props.long}
           /> */}
 
-          {
-            locations.map((item) => (
-              this.ChargeCenter(item)
-            ))
-          }
+          {locations.map((item) => this.ChargeCenter(item))}
         </GoogleMapReact>
 
-
-        {
-          current !== null &&
+        {current !== null && (
           <Modal
             footer={null}
             title={null}
@@ -100,19 +91,15 @@ class SimpleMap extends Component {
             visible={visible}
             className="info-modal"
           >
-
             <h1 className="title">
-              {current?.AddressInfo?.Postcode}, {current?.AddressInfo?.Town} ({current?.AddressInfo?.Country.Title})
-          </h1>
+              {current?.AddressInfo?.Postcode}, {current?.AddressInfo?.Town} (
+              {current?.AddressInfo?.Country.Title})
+            </h1>
 
             <Row>
               <Col lg={12} xs={24}>
-                <p className="footnote">
-                  {current.OperatorInfo.Title}
-                </p>
-                <p className="footnote">
-                  {current.OperatorInfo.Comments}
-                </p>
+                <p className="footnote">{current.OperatorInfo.Title}</p>
+                <p className="footnote">{current.OperatorInfo.Comments}</p>
               </Col>
               <Col lg={12} xs={24}>
                 <p className="footnote">
@@ -125,7 +112,8 @@ class SimpleMap extends Component {
             </Row>
 
             <p className="footnote">
-              Status: {current.StatusType.IsOperational ? 'Available' : 'Not Available'}
+              Status:{" "}
+              {current.StatusType.IsOperational ? "Available" : "Not Available"}
             </p>
 
             <table>
@@ -134,26 +122,19 @@ class SimpleMap extends Component {
                 <th>Plug Type</th>
                 <th>Max Power</th>
               </tr>
-              {
-                current.Connections.map((item, index) => (
-                  <>
-                    <tr key={`conn-${item.ID}`}>
-                      <td>{index + 1}</td>
-                      <td>{item.ConnectionType.Title}</td>
-                      <td>{item.PowerKW} kW</td>
-                    </tr>
-                  </>
-                ))
-              }
+              {current.Connections.map((item, index) => (
+                <>
+                  <tr key={`conn-${item.ID}`}>
+                    <td>{index + 1}</td>
+                    <td>{item.ConnectionType.Title}</td>
+                    <td>{item.PowerKW} kW</td>
+                  </tr>
+                </>
+              ))}
             </table>
-
-
           </Modal>
-
-        }
+        )}
       </div>
     );
   }
 }
-
-export default SimpleMap;
